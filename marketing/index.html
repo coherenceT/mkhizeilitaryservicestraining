@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Hub - National Military Training Programme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                <span>MILITARY TRAINING</span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../pages/about.html">About</a>
+                <a href="../pages/pathway.html">Pathway</a>
+                <a href="../pages/pre-training.html">Pre-Training</a>
+                <a href="../pages/application.html">Apply</a>
+                <a href="../admin/" class="btn-nav-outline">Admin Portal</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Marketing Hub Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Marketing Hub</span>
+            </div>
+            <h1>Marketing Hub</h1>
+            <p>
+                Automated marketing tools and social media content generation for promoting
+                the National Military Training Programme to South African youth.
+            </p>
+        </div>
+    </section>
+
+    <!-- Marketing Dashboard Overview -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-label">MARKETING DASHBOARD</span>
+                <h2>Campaign Performance</h2>
+                <p>Track your marketing efforts and engagement metrics</p>
+            </div>
+
+            <div class="marketing-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">📱</div>
+                    <div class="stat-content">
+                        <h3>Social Media Reach</h3>
+                        <div class="stat-value">45.2K</div>
+                        <div class="stat-change positive">+12% this week</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3>Website Visitors</h3>
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-change positive">+8% this month</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-content">
+                        <h3>Applications Started</h3>
+                        <div class="stat-value">89</div>
+                        <div class="stat-change positive">+15% this week</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h3>Conversion Rate</h3>
+                        <div class="stat-value">23.4%</div>
+                        <div class="stat-change positive">+5% this month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Content Generator -->
+    <section class="programme-overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">CONTENT GENERATOR</span>
+                <h2>Automated Social Media Content</h2>
+                <p>Generate engaging posts, slogans, and content ideas tailored for military training promotion</p>
+            </div>
+
+            <div class="content-generator">
+                <div class="generator-controls">
+                    <div class="control-group">
+                        <label for="contentType">Content Type:</label>
+                        <select id="contentType">
+                            <option value="post">Social Media Post</option>
+                            <option value="slogan">Motivational Slogan</option>
+                            <option value="story">Success Story</option>
+                            <option value="call-to-action">Call to Action</option>
+                            <option value="testimonial">Testimonial Quote</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="targetAudience">Target Audience:</label>
+                        <select id="targetAudience">
+                            <option value="matrics">Grade 12 Students</option>
+                            <option value="university">University Students</option>
+                            <option value="youth">General Youth</option>
+                            <option value="parents">Parents</option>
+                            <option value="community">Community Leaders</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="platform">Platform:</label>
+                        <select id="platform">
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="twitter">Twitter/X</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="whatsapp">WhatsApp</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" id="generateContent">Generate Content</button>
+                </div>
+
+                <div class="generated-content" id="generatedContent">
+                    <div class="content-placeholder">
+                        <div class="placeholder-icon">💡</div>
+                        <p>Select your options and click "Generate Content" to create engaging marketing material</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Banners -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-label">BANNER CREATOR</span>
+                <h2>Social Media Banners</h2>
+                <p>Create eye-catching banners for your social media campaigns</p>
+            </div>
+
+            <div class="banner-creator">
+                <div class="banner-templates">
+                    <div class="template-grid">
+                        <div class="template-card active" data-template="hero">
+                            <div class="template-preview">
+                                <div class="banner-mockup hero-banner">
+                                    <div class="banner-content">
+                                        <h3>FORGE YOUR FUTURE</h3>
+                                        <p>Join South Africa's Elite Military Training</p>
+                                        <div class="banner-cta">Apply Now</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4>Hero Banner</h4>
+                                <p>Compelling main message</p>
+                            </div>
+                        </div>
+
+                        <div class="template-card" data-template="success">
+                            <div class="template-preview">
+                                <div class="banner-mockup success-banner">
+                                    <div class="banner-content">
+                                        <h3>98% SUCCESS RATE</h3>
+                                        <p>Transform Your Life Through Discipline</p>
+                                        <div class="banner-stats">500+ Graduates</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4>Success Banner</h4>
+                                <p>Highlight achievements</p>
+                            </div>
+                        </div>
+
+                        <div class="template-card" data-template="deadline">
+                            <div class="template-preview">
+                                <div class="banner-mockup deadline-banner">
+                                    <div class="banner-content">
+                                        <h3>APPLICATIONS CLOSE</h3>
+                                        <p>31 December 2024</p>
+                                        <div class="banner-urgent">Don't Miss Out!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4>Deadline Banner</h4>
+                                <p>Create urgency</p>
+                            </div>
+                        </div>
+
+                        <div class="template-card" data-template="testimonial">
+                            <div class="template-preview">
+                                <div class="banner-mockup testimonial-banner">
+                                    <div class="banner-content">
+                                        <h3>"This Changed My Life"</h3>
+                                        <p>- Successful Graduate</p>
+                                        <div class="banner-quote">From uncertainty to purpose</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4>Testimonial Banner</h4>
+                                <p>Social proof</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="banner-customizer">
+                    <div class="customizer-panel">
+                        <h4>Customize Banner</h4>
+
+                        <div class="customizer-controls">
+                            <div class="control-group">
+                                <label for="bannerHeadline">Headline:</label>
+                                <input type="text" id="bannerHeadline" value="FORGE YOUR FUTURE">
+                            </div>
+
+                            <div class="control-group">
+                                <label for="bannerSubtext">Subtext:</label>
+                                <input type="text" id="bannerSubtext" value="Join South Africa's Elite Military Training">
+                            </div>
+
+                            <div class="control-group">
+                                <label for="bannerColor">Primary Color:</label>
+                                <input type="color" id="bannerColor" value="#1f838a">
+                            </div>
+
+                            <div class="control-group">
+                                <label for="bannerSize">Size:</label>
+                                <select id="bannerSize">
+                                    <option value="square">Square (1080x1080)</option>
+                                    <option value="story">Story (1080x1920)</option>
+                                    <option value="landscape">Landscape (1200x628)</option>
+                                    <option value="banner">Banner (1200x300)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="customizer-actions">
+                            <button class="btn btn-secondary" id="previewBanner">Preview</button>
+                            <button class="btn btn-primary" id="downloadBanner">Download PNG</button>
+                        </div>
+                    </div>
+
+                    <div class="banner-preview">
+                        <div class="preview-container">
+                            <div class="live-banner" id="liveBanner">
+                                <div class="banner-background"></div>
+                                <div class="banner-text">
+                                    <h3 id="previewHeadline">FORGE YOUR FUTURE</h3>
+                                    <p id="previewSubtext">Join South Africa's Elite Military Training</p>
+                                    <div class="banner-cta">Apply Now</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign Strategies -->
+    <section class="programme-overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">CAMPAIGN STRATEGIES</span>
+                <h2>Targeted Marketing Campaigns</h2>
+                <p>Strategic approaches to attract matriculants and youth after exam results</p>
+            </div>
+
+            <div class="campaign-strategies">
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">📅</div>
+                        <h3>Matric Results Campaign</h3>
+                    </div>
+                    <div class="strategy-content">
+                        <p>Target students immediately after receiving their matric results with motivational content about second chances and career opportunities.</p>
+                        <div class="strategy-timeline">
+                            <div class="timeline-phase">
+                                <span class="phase-date">Jan 10-20</span>
+                                <span class="phase-activity">Results announcement period</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Jan 21-31</span>
+                                <span class="phase-activity">Motivational content push</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Feb 1-15</span>
+                                <span class="phase-activity">Application drive</span>
+                            </div>
+                        </div>
+                        <div class="strategy-targets">
+                            <span class="target-tag">Facebook Ads</span>
+                            <span class="target-tag">Instagram Stories</span>
+                            <span class="target-tag">School Visits</span>
+                            <span class="target-tag">WhatsApp Groups</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">🎓</div>
+                        <h3>University Bridge Programme</h3>
+                    </div>
+                    <div class="strategy-content">
+                        <p>Position military training as a valuable alternative to university for students seeking practical skills and national service.</p>
+                        <div class="strategy-timeline">
+                            <div class="timeline-phase">
+                                <span class="phase-date">Feb-Mar</span>
+                                <span class="phase-activity">University orientation season</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Apr-Jun</span>
+                                <span class="phase-activity">Career comparison content</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Jul-Sep</span>
+                                <span class="phase-activity">Success story testimonials</span>
+                            </div>
+                        </div>
+                        <div class="strategy-targets">
+                            <span class="target-tag">LinkedIn</span>
+                            <span class="target-tag">University Partnerships</span>
+                            <span class="target-tag">Career Fairs</span>
+                            <span class="target-tag">Alumni Network</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">🌟</div>
+                        <h3>Success Stories Campaign</h3>
+                    </div>
+                    <div class="strategy-content">
+                        <p>Showcase transformation stories of graduates who went from average students to military leaders and successful professionals.</p>
+                        <div class="strategy-timeline">
+                            <div class="timeline-phase">
+                                <span class="phase-date">Ongoing</span>
+                                <span class="phase-activity">Weekly success posts</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Monthly</span>
+                                <span class="phase-activity">Featured graduate profiles</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Quarterly</span>
+                                <span class="phase-activity">Impact report releases</span>
+                            </div>
+                        </div>
+                        <div class="strategy-targets">
+                            <span class="target-tag">Video Content</span>
+                            <span class="target-tag">Instagram Reels</span>
+                            <span class="target-tag">YouTube Channel</span>
+                            <span class="target-tag">Press Releases</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-card featured">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">📱</div>
+                        <h3>Digital Community Building</h3>
+                    </div>
+                    <div class="strategy-content">
+                        <p>Build an engaged online community of prospective applicants, alumni, and supporters through interactive content and regular engagement.</p>
+                        <div class="strategy-timeline">
+                            <div class="timeline-phase">
+                                <span class="phase-date">Weekly</span>
+                                <span class="phase-activity">Q&A sessions</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Daily</span>
+                                <span class="phase-activity">Motivational quotes</span>
+                            </div>
+                            <div class="timeline-phase">
+                                <span class="phase-date">Monthly</span>
+                                <span class="phase-activity">Virtual events</span>
+                            </div>
+                        </div>
+                        <div class="strategy-targets">
+                            <span class="target-tag">WhatsApp Community</span>
+                            <span class="target-tag">Discord Server</span>
+                            <span class="target-tag">Facebook Group</span>
+                            <span class="target-tag">Newsletter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Calendar -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-label">CONTENT CALENDAR</span>
+                <h2>Automated Posting Schedule</h2>
+                <p>Pre-planned content for consistent engagement across all platforms</p>
+            </div>
+
+            <div class="content-calendar">
+                <div class="calendar-header">
+                    <div class="calendar-nav">
+                        <button class="btn btn-small" id="prevMonth">←</button>
+                        <h3 id="currentMonth">December 2024</h3>
+                        <button class="btn btn-small" id="nextMonth">→</button>
+                    </div>
+                    <div class="calendar-filters">
+                        <select id="platformFilter">
+                            <option value="all">All Platforms</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="tiktok">TikTok</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="calendar-weekdays">
+                        <div class="weekday">Mon</div>
+                        <div class="weekday">Tue</div>
+                        <div class="weekday">Wed</div>
+                        <div class="weekday">Thu</div>
+                        <div class="weekday">Fri</div>
+                        <div class="weekday">Sat</div>
+                        <div class="weekday">Sun</div>
+                    </div>
+
+                    <div class="calendar-days" id="calendarDays">
+                        <!-- Calendar days will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketing Analytics -->
+    <section class="programme-overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">ANALYTICS</span>
+                <h2>Campaign Performance Tracking</h2>
+                <p>Monitor the effectiveness of your marketing efforts</p>
+            </div>
+
+            <div class="analytics-dashboard">
+                <div class="analytics-chart">
+                    <h4>Engagement Over Time</h4>
+                    <div class="chart-placeholder">
+                        <div class="chart-line">
+                            <div class="data-point" style="left: 10%; top: 80%;"></div>
+                            <div class="data-point" style="left: 20%; top: 60%;"></div>
+                            <div class="data-point" style="left: 30%; top: 70%;"></div>
+                            <div class="data-point" style="left: 40%; top: 50%;"></div>
+                            <div class="data-point" style="left: 50%; top: 40%;"></div>
+                            <div class="data-point" style="left: 60%; top: 30%;"></div>
+                            <div class="data-point" style="left: 70%; top: 25%;"></div>
+                            <div class="data-point" style="left: 80%; top: 20%;"></div>
+                            <div class="data-point" style="left: 90%; top: 15%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-metrics">
+                    <div class="metric-item">
+                        <h4>Top Performing Content</h4>
+                        <div class="content-ranking">
+                            <div class="rank-item">
+                                <span class="rank-number">1</span>
+                                <span class="rank-content">"Success Story: From Matric to Military"</span>
+                                <span class="rank-stats">2.3K engagements</span>
+                            </div>
+                            <div class="rank-item">
+                                <span class="rank-number">2</span>
+                                <span class="rank-content">Motivational Quote Series</span>
+                                <span class="rank-stats">1.8K engagements</span>
+                            </div>
+                            <div class="rank-item">
+                                <span class="rank-number">3</span>
+                                <span class="rank-content">Application Deadline Reminder</span>
+                                <span class="rank-stats">1.5K engagements</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-item">
+                        <h4>Conversion Funnel</h4>
+                        <div class="funnel-chart">
+                            <div class="funnel-step">
+                                <span class="step-label">Website Visitors</span>
+                                <span class="step-value">10,000</span>
+                                <div class="funnel-bar" style="width: 100%;"></div>
+                            </div>
+                            <div class="funnel-step">
+                                <span class="step-label">Application Starts</span>
+                                <span class="step-value">1,247</span>
+                                <div class="funnel-bar" style="width: 75%;"></div>
+                            </div>
+                            <div class="funnel-step">
+                                <span class="step-label">Completed Applications</span>
+                                <span class="step-value">456</span>
+                                <div class="funnel-bar" style="width: 45%;"></div>
+                            </div>
+                            <div class="funnel-step">
+                                <span class="step-label">Accepted Candidates</span>
+                                <span class="step-value">127</span>
+                                <div class="funnel-bar" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Integration -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-label">WHATSAPP INTEGRATION</span>
+                <h2>Direct Communication Channel</h2>
+                <p>Connect with prospective applicants through WhatsApp messaging</p>
+            </div>
+
+            <div class="whatsapp-integration">
+                <div class="whatsapp-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h4>Automated Responses</h4>
+                        <p>Set up intelligent chatbots to answer common questions about the programme</p>
+                        <button class="btn btn-small">Configure Bot</button>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📢</div>
+                        <h4>Bulk Messaging</h4>
+                        <p>Send targeted messages to groups of interested applicants</p>
+                        <button class="btn btn-small">Create Campaign</button>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Message Analytics</h4>
+                        <p>Track engagement and response rates for your WhatsApp campaigns</p>
+                        <button class="btn btn-small">View Reports</button>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h4>Lead Qualification</h4>
+                        <p>Automatically qualify leads based on their responses and interest level</p>
+                        <button class="btn btn-small">Set Up Rules</button>
+                    </div>
+                </div>
+
+                <div class="whatsapp-templates">
+                    <h4>Message Templates</h4>
+                    <div class="template-list">
+                        <div class="template-item">
+                            <div class="template-header">
+                                <h5>Welcome Message</h5>
+                                <button class="btn btn-small">Edit</button>
+                            </div>
+                            <div class="template-content">
+                                "Hi! Thank you for your interest in the National Military Training Programme.
+                                We're excited about your potential. How can we help you today?"
+                            </div>
+                        </div>
+
+                        <div class="template-item">
+                            <div class="template-header">
+                                <h5>Application Reminder</h5>
+                                <button class="btn btn-small">Edit</button>
+                            </div>
+                            <div class="template-content">
+                                "Don't forget! Applications for our January intake close on 31 December.
+                                Complete your application today: [Application Link]"
+                            </div>
+                        </div>
+
+                        <div class="template-item">
+                            <div class="template-header">
+                                <h5>Success Notification</h5>
+                                <button class="btn btn-small">Edit</button>
+                            </div>
+                            <div class="template-content">
+                                "Congratulations! Your application has been approved.
+                                Welcome to the National Military Training Programme!"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                        <span>MILITARY TRAINING<br>PROGRAMME</span>
+                    </div>
+                    <div class="footer-about">
+                        <p>
+                            Marketing Hub - Automated content generation and campaign management
+                            for the National Military Training Programme.
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Marketing Tools</h4>
+                    <ul>
+                        <li><a href="#content-generator">Content Generator</a></li>
+                        <li><a href="#banner-creator">Banner Creator</a></li>
+                        <li><a href="#campaign-strategies">Campaign Strategies</a></li>
+                        <li><a href="#analytics">Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Social Media</h4>
+                    <ul>
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#twitter">Twitter/X</a></li>
+                        <li><a href="#tiktok">TikTok</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../pages/about.html">About Programme</a></li>
+                        <li><a href="../pages/application.html">Apply Now</a></li>
+                        <li><a href="../admin/">Admin Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 National Military Training Programme. Marketing Hub.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Marketing Guidelines</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="js/marketing.js"></script>
+</body>
+</html>

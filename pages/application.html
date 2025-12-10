@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Portal - National Military Training Programme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                <span>MILITARY TRAINING</span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="pathway.html">Pathway</a>
+                <a href="pre-training.html">Pre-Training</a>
+                <a href="application.html" class="active">Apply</a>
+                <a href="../admin/" class="btn-nav-outline">Admin Portal</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Application Portal</span>
+            </div>
+            <h1>Application Portal</h1>
+            <p>
+                Begin your journey to military excellence. Complete your application for the
+                National Military Training Programme through our comprehensive online portal.
+            </p>
+        </div>
+    </section>
+
+    <!-- Application Process Overview -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-label">APPLICATION PROCESS</span>
+                <h2>5-Step Application Journey</h2>
+                <p>Complete and comprehensive application process designed for success</p>
+            </div>
+
+            <div class="application-steps">
+                <div class="step-card active" data-step="1">
+                    <div class="step-number">1</div>
+                    <h3>Personal Information</h3>
+                    <p>Basic details and contact information</p>
+                </div>
+                <div class="step-card" data-step="2">
+                    <div class="step-number">2</div>
+                    <h3>Educational Background</h3>
+                    <p>Academic qualifications and achievements</p>
+                </div>
+                <div class="step-card" data-step="3">
+                    <div class="step-number">3</div>
+                    <h3>Medical & Fitness</h3>
+                    <p>Health status and physical readiness</p>
+                </div>
+                <div class="step-card" data-step="4">
+                    <div class="step-number">4</div>
+                    <h3>Documents Upload</h3>
+                    <p>Supporting documents and certifications</p>
+                </div>
+                <div class="step-card" data-step="5">
+                    <div class="step-number">5</div>
+                    <h3>Review & Submit</h3>
+                    <p>Final review and application submission</p>
+                </div>
+            </div>
+
+            <div class="application-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 20%;"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentStep">Step 1 of 5</span>
+                    <span id="progressPercentage">20% Complete</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="programme-overview">
+        <div class="container">
+            <div class="application-container">
+                <!-- Step 1: Personal Information -->
+                <div class="application-step active" id="step1">
+                    <div class="step-header">
+                        <h2>Step 1: Personal Information</h2>
+                        <p>Please provide your basic personal details and contact information.</p>
+                    </div>
+
+                    <form class="application-form" id="personalForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">
+                                    First Name <span class="required">*</span>
+                                </label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                                <div class="form-help">Enter your legal first name as it appears on your ID</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">
+                                    Last Name <span class="required">*</span>
+                                </label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                                <div class="form-help">Enter your legal surname</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="idNumber">
+                                    South African ID Number <span class="required">*</span>
+                                </label>
+                                <input type="text" id="idNumber" name="idNumber" class="form-input" maxlength="13" pattern="[0-9]{13}" required>
+                                <div class="form-help">13-digit South African ID number</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="dateOfBirth">
+                                    Date of Birth <span class="required">*</span>
+                                </label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-input" required>
+                                <div class="form-help">You must be 18-22 years old</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="gender">
+                                    Gender <span class="required">*</span>
+                                </label>
+                                <select id="gender" name="gender" class="form-select" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="nationality">
+                                    Nationality <span class="required">*</span>
+                                </label>
+                                <select id="nationality" name="nationality" class="form-select" required>
+                                    <option value="">Select Nationality</option>
+                                    <option value="south-african">South African</option>
+                                    <option value="other">Other (specify below)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="otherNationalityGroup" style="display: none;">
+                            <label class="form-label" for="otherNationality">
+                                Specify Nationality
+                            </label>
+                            <input type="text" id="otherNationality" name="otherNationality" class="form-input">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="email">
+                                    Email Address <span class="required">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                                <div class="form-help">We'll use this for all correspondence</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">
+                                    Phone Number <span class="required">*</span>
+                                </label>
+                                <input type="tel" id="phone" name="phone" class="form-input" required>
+                                <div class="form-help">Include country code (e.g., +27)</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="address">
+                                    Physical Address <span class="required">*</span>
+                                </label>
+                                <input type="text" id="address" name="address" class="form-input" required>
+                                <div class="form-help">Street address and number</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="city">
+                                    City <span class="required">*</span>
+                                </label>
+                                <input type="text" id="city" name="city" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="province">
+                                    Province <span class="required">*</span>
+                                </label>
+                                <select id="province" name="province" class="form-select" required>
+                                    <option value="">Select Province</option>
+                                    <option value="gauteng">Gauteng</option>
+                                    <option value="western-cape">Western Cape</option>
+                                    <option value="kwazulu-natal">KwaZulu-Natal</option>
+                                    <option value="eastern-cape">Eastern Cape</option>
+                                    <option value="limpopo">Limpopo</option>
+                                    <option value="mpumalanga">Mpumalanga</option>
+                                    <option value="north-west">North West</option>
+                                    <option value="northern-cape">Northern Cape</option>
+                                    <option value="free-state">Free State</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="postalCode">
+                                    Postal Code <span class="required">*</span>
+                                </label>
+                                <input type="text" id="postalCode" name="postalCode" class="form-input" pattern="[0-9]{4}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="emergencyContact">
+                                Emergency Contact Information <span class="required">*</span>
+                            </label>
+                            <input type="text" id="emergencyContact" name="emergencyContact" class="form-input" placeholder="Full name and relationship" required>
+                            <div class="form-help">Name and relationship (e.g., "John Doe - Father")</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="emergencyPhone">
+                                Emergency Contact Phone <span class="required">*</span>
+                            </label>
+                            <input type="tel" id="emergencyPhone" name="emergencyPhone" class="form-input" required>
+                        </div>
+
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" disabled>Previous</button>
+                            <button type="button" class="btn btn-primary next-step" data-next="2">Next Step</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Educational Background -->
+                <div class="application-step" id="step2">
+                    <div class="step-header">
+                        <h2>Step 2: Educational Background</h2>
+                        <p>Tell us about your academic qualifications and achievements.</p>
+                    </div>
+
+                    <form class="application-form" id="educationForm">
+                        <div class="form-group">
+                            <label class="form-label" for="highestQualification">
+                                Highest Qualification Obtained <span class="required">*</span>
+                            </label>
+                            <select id="highestQualification" name="highestQualification" class="form-select" required>
+                                <option value="">Select Qualification</option>
+                                <option value="matric">Matric/Grade 12</option>
+                                <option value="certificate">Certificate/Diploma</option>
+                                <option value="degree">Bachelor's Degree</option>
+                                <option value="honours">Honours Degree</option>
+                                <option value="masters">Master's Degree</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="schoolName">
+                                    School/Institution Name <span class="required">*</span>
+                                </label>
+                                <input type="text" id="schoolName" name="schoolName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="graduationYear">
+                                    Year of Completion <span class="required">*</span>
+                                </label>
+                                <select id="graduationYear" name="graduationYear" class="form-select" required>
+                                    <option value="">Select Year</option>
+                                    <script>
+                                        const currentYear = new Date().getFullYear();
+                                        for (let year = currentYear; year >= currentYear - 10; year--) {
+                                            document.write(`<option value="${year}">${year}</option>`);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="mathsGrade">
+                                    Mathematics Grade
+                                </label>
+                                <select id="mathsGrade" name="mathsGrade" class="form-select">
+                                    <option value="">Select Grade</option>
+                                    <option value="A">A (80-100%)</option>
+                                    <option value="B">B (70-79%)</option>
+                                    <option value="C">C (60-69%)</option>
+                                    <option value="D">D (50-59%)</option>
+                                    <option value="E">E (40-49%)</option>
+                                    <option value="F">F (0-39%)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="englishGrade">
+                                    English Grade
+                                </label>
+                                <select id="englishGrade" name="englishGrade" class="form-select">
+                                    <option value="">Select Grade</option>
+                                    <option value="A">A (80-100%)</option>
+                                    <option value="B">B (70-79%)</option>
+                                    <option value="C">C (60-69%)</option>
+                                    <option value="D">D (50-59%)</option>
+                                    <option value="E">E (40-49%)</option>
+                                    <option value="F">F (0-39%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="achievements">
+                                Academic Achievements & Extracurricular Activities
+                            </label>
+                            <textarea id="achievements" name="achievements" class="form-textarea" rows="4" placeholder="List any academic awards, sports achievements, leadership roles, or extracurricular activities..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="careerGoals">
+                                Career Goals & Motivation <span class="required">*</span>
+                            </label>
+                            <textarea id="careerGoals" name="careerGoals" class="form-textarea" rows="4" required placeholder="Why do you want to join the military? What are your long-term career goals?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="leadershipExperience">
+                                Leadership Experience
+                            </label>
+                            <textarea id="leadershipExperience" name="leadershipExperience" class="form-textarea" rows="3" placeholder="Describe any leadership roles you've held, team projects, or situations where you demonstrated leadership..."></textarea>
+                        </div>
+
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary prev-step" data-prev="1">Previous</button>
+                            <button type="button" class="btn btn-primary next-step" data-next="3">Next Step</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 3: Medical & Fitness -->
+                <div class="application-step" id="step3">
+                    <div class="step-header">
+                        <h2>Step 3: Medical & Fitness Information</h2>
+                        <p>Provide details about your health status and physical fitness level.</p>
+                    </div>
+
+                    <form class="application-form" id="medicalForm">
+                        <div class="form-group">
+                            <label class="form-label" for="medicalConditions">
+                                Medical Conditions <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="form-checkbox">
+                                    <input type="radio" name="medicalConditions" value="none" required>
+                                    <span>No medical conditions</span>
+                                </label>
+                                <label class="form-checkbox">
+                                    <input type="radio" name="medicalConditions" value="yes">
+                                    <span>Yes, I have medical conditions</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="conditionsDetails" style="display: none;">
+                            <label class="form-label" for="conditionsList">
+                                Please specify your medical conditions
+                            </label>
+                            <textarea id="conditionsList" name="conditionsList" class="form-textarea" rows="3" placeholder="List all medical conditions, allergies, medications, or health concerns..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="height">
+                                    Height (cm) <span class="required">*</span>
+                                </label>
+                                <input type="number" id="height" name="height" class="form-input" min="140" max="220" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="weight">
+                                    Weight (kg) <span class="required">*</span>
+                                </label>
+                                <input type="number" id="weight" name="weight" class="form-input" min="40" max="150" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="fitnessLevel">
+                                Current Fitness Level <span class="required">*</span>
+                            </label>
+                            <select id="fitnessLevel" name="fitnessLevel" class="form-select" required>
+                                <option value="">Select Fitness Level</option>
+                                <option value="beginner">Beginner - Little to no regular exercise</option>
+                                <option value="intermediate">Intermediate - Moderate regular exercise</option>
+                                <option value="advanced">Advanced - High level of fitness</option>
+                                <option value="athlete">Athlete - Competitive sports background</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="exerciseFrequency">
+                                Exercise Frequency
+                            </label>
+                            <select id="exerciseFrequency" name="exerciseFrequency" class="form-select">
+                                <option value="">Select Frequency</option>
+                                <option value="never">Never</option>
+                                <option value="1-2">1-2 times per week</option>
+                                <option value="3-4">3-4 times per week</option>
+                                <option value="5+">5+ times per week</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="sportsExperience">
+                                Sports/Physical Activities Experience
+                            </label>
+                            <textarea id="sportsExperience" name="sportsExperience" class="form-textarea" rows="3" placeholder="List any sports you play, physical activities you participate in, or relevant physical achievements..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="medicalClearance">
+                                Medical Clearance <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="form-checkbox">
+                                    <input type="radio" name="medicalClearance" value="yes" required>
+                                    <span>I will obtain medical clearance from a doctor before training begins</span>
+                                </label>
+                            </div>
+                            <div class="form-help">You must provide a medical certificate confirming you are fit for intensive physical training</div>
+                        </div>
+
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary prev-step" data-prev="2">Previous</button>
+                            <button type="button" class="btn btn-primary next-step" data-next="4">Next Step</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 4: Documents Upload -->
+                <div class="application-step" id="step4">
+                    <div class="step-header">
+                        <h2>Step 4: Documents Upload</h2>
+                        <p>Upload the required supporting documents for your application.</p>
+                    </div>
+
+                    <form class="application-form" id="documentsForm">
+                        <div class="documents-grid">
+                            <div class="document-upload">
+                                <div class="file-upload">
+                                    <div class="file-upload-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                        </svg>
+                                    </div>
+                                    <p>ID Document Copy</p>
+                                    <span class="supported">PDF, JPG, PNG (Max 5MB)</span>
+                                    <input type="file" id="idDocument" name="idDocument" accept=".pdf,.jpg,.jpeg,.png" required>
+                                    <button type="button" class="btn btn-small">Choose File</button>
+                                </div>
+                                <div class="upload-status" id="idStatus">Not uploaded</div>
+                            </div>
+
+                            <div class="document-upload">
+                                <div class="file-upload">
+                                    <div class="file-upload-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Matric Certificate</p>
+                                    <span class="supported">PDF, JPG, PNG (Max 5MB)</span>
+                                    <input type="file" id="matricCertificate" name="matricCertificate" accept=".pdf,.jpg,.jpeg,.png" required>
+                                    <button type="button" class="btn btn-small">Choose File</button>
+                                </div>
+                                <div class="upload-status" id="matricStatus">Not uploaded</div>
+                            </div>
+
+                            <div class="document-upload">
+                                <div class="file-upload">
+                                    <div class="file-upload-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Medical Certificate</p>
+                                    <span class="supported">PDF, JPG, PNG (Max 5MB)</span>
+                                    <input type="file" id="medicalCertificate" name="medicalCertificate" accept=".pdf,.jpg,.jpeg,.png" required>
+                                    <button type="button" class="btn btn-small">Choose File</button>
+                                </div>
+                                <div class="upload-status" id="medicalStatus">Not uploaded</div>
+                            </div>
+
+                            <div class="document-upload">
+                                <div class="file-upload">
+                                    <div class="file-upload-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                        </svg>
+                                    </div>
+                                    <p>Academic Transcript</p>
+                                    <span class="supported">PDF, JPG, PNG (Max 5MB)</span>
+                                    <input type="file" id="transcript" name="transcript" accept=".pdf,.jpg,.jpeg,.png">
+                                    <button type="button" class="btn btn-small">Choose File</button>
+                                </div>
+                                <div class="upload-status" id="transcriptStatus">Not uploaded</div>
+                            </div>
+                        </div>
+
+                        <div class="upload-requirements">
+                            <h3>Document Requirements</h3>
+                            <ul>
+                                <li>All documents must be clear and legible</li>
+                                <li>ID document must show full details</li>
+                                <li>Medical certificate must be from a registered doctor</li>
+                                <li>Academic documents must show final results</li>
+                                <li>File size limit: 5MB per document</li>
+                                <li>Supported formats: PDF, JPG, PNG</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary prev-step" data-prev="3">Previous</button>
+                            <button type="button" class="btn btn-primary next-step" data-next="5">Next Step</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 5: Review & Submit -->
+                <div class="application-step" id="step5">
+                    <div class="step-header">
+                        <h2>Step 5: Review & Submit</h2>
+                        <p>Please review your application details before submitting.</p>
+                    </div>
+
+                    <div class="application-review">
+                        <div class="review-section">
+                            <h3>Personal Information</h3>
+                            <div class="review-grid">
+                                <div class="review-item">
+                                    <span class="review-label">Full Name:</span>
+                                    <span class="review-value" id="reviewName">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">ID Number:</span>
+                                    <span class="review-value" id="reviewID">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Date of Birth:</span>
+                                    <span class="review-value" id="reviewDOB">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Email:</span>
+                                    <span class="review-value" id="reviewEmail">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-section">
+                            <h3>Educational Background</h3>
+                            <div class="review-grid">
+                                <div class="review-item">
+                                    <span class="review-label">Highest Qualification:</span>
+                                    <span class="review-value" id="reviewQualification">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Institution:</span>
+                                    <span class="review-value" id="reviewSchool">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Graduation Year:</span>
+                                    <span class="review-value" id="reviewYear">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-section">
+                            <h3>Medical & Fitness</h3>
+                            <div class="review-grid">
+                                <div class="review-item">
+                                    <span class="review-label">Height:</span>
+                                    <span class="review-value" id="reviewHeight">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Weight:</span>
+                                    <span class="review-value" id="reviewWeight">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Fitness Level:</span>
+                                    <span class="review-value" id="reviewFitness">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-section">
+                            <h3>Documents Status</h3>
+                            <div class="documents-status">
+                                <div class="status-item">
+                                    <span class="status-label">ID Document:</span>
+                                    <span class="status-value" id="statusID">❌ Not uploaded</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Matric Certificate:</span>
+                                    <span class="status-value" id="statusMatric">❌ Not uploaded</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Medical Certificate:</span>
+                                    <span class="status-value" id="statusMedical">❌ Not uploaded</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Academic Transcript:</span>
+                                    <span class="status-value" id="statusTranscript">⚠️ Optional</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="declaration-section">
+                        <h3>Declaration & Consent</h3>
+                        <div class="declaration-item">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="accuracyDeclaration" required>
+                                <span>I declare that all information provided in this application is true and accurate to the best of my knowledge.</span>
+                            </label>
+                        </div>
+                        <div class="declaration-item">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="medicalConsent" required>
+                                <span>I consent to the collection and processing of my medical information for application purposes.</span>
+                            </label>
+                        </div>
+                        <div class="declaration-item">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="backgroundCheck" required>
+                                <span>I consent to a background check and understand that certain criminal convictions may affect my application.</span>
+                            </label>
+                        </div>
+                        <div class="declaration-item">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="termsAcceptance" required>
+                                <span>I have read and accept the terms and conditions of the National Military Training Programme.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="step-navigation">
+                        <button type="button" class="btn btn-secondary prev-step" data-prev="4">Previous</button>
+                        <button type="submit" class="btn btn-primary btn-large" id="submitApplication" disabled>
+                            Submit Application
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                        <span>MILITARY TRAINING<br>PROGRAMME</span>
+                    </div>
+                    <div class="footer-about">
+                        <p>
+                            Developing South Africa's future leaders through comprehensive pre-military training
+                            that builds character, discipline, and national pride.
+                        </p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.099 4.388 23.094 10.125 24V15.564H7.078V12.073H10.125V9.412C10.125 6.387 11.917 4.715 14.71 4.715C15.908 4.715 17.152 4.928 17.152 4.928V7.881H15.752C14.376 7.881 13.938 8.734 13.938 9.621V12.073H16.945L16.454 15.564H13.938V24C19.612 23.094 24 18.099 24 12.073Z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57C23.053 4.991 22.088 5.277 21.078 5.418C22.129 4.774 22.99 3.761 23.339 2.558C22.386 3.131 21.345 3.538 20.254 3.738C19.343 2.777 18.071 2.166 16.669 2.166C13.946 2.166 11.735 4.392 11.735 7.141C11.735 7.541 11.781 7.931 11.869 8.309C8.03 8.112 4.624 6.247 2.276 3.369C1.85 4.111 1.605 5.008 1.605 5.967C1.605 7.33 2.292 8.537 3.329 9.229C2.499 9.203 1.723 8.971 1.039 8.577V8.638C1.039 11.063 2.756 13.107 5.058 13.569C4.641 13.684 4.204 13.743 3.755 3.743C3.449 3.743 3.15 3.713 2.859 3.657C3.465 5.595 5.229 6.977 7.355 7.016C5.636 8.379 3.474 9.184 1.155 9.184C0.745 9.184 0.341 9.16 0 9.107C2.157 10.509 4.743 11.347 7.552 11.347C16.653 11.347 21.601 3.818 21.601 7.728C21.601 7.504 21.596 7.282 21.588 7.061C22.547 6.354 23.372 5.457 23.953 4.57Z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.75.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-5.825 0-3.761 2.741-7.244 7.943-7.244 4.157 0 7.396 2.967 7.396 6.931 0 4.136-2.607 7.451-6.22 7.451-1.216 0-2.357-.631-2.746-1.379l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001.012.017z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About the Programme</a></li>
+                        <li><a href="pathway.html">Training Pathway</a></li>
+                        <li><a href="pre-training.html">Pre-Training Programme</a></li>
+                        <li><a href="application.html">Apply Now</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Training Programmes</h4>
+                    <ul>
+                        <li><a href="pre-training.html">Physical Training</a></li>
+                        <li><a href="pre-training.html">Mental Resilience</a></li>
+                        <li><a href="pre-training.html">Leadership Development</a></li>
+                        <li><a href="pre-training.html">Survival Skills</a></li>
+                        <li><a href="pre-training.html">Team Building</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Information</h4>
+                    <div class="footer-contact">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                Pretoria, South Africa
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +27 (0)12 345 6789
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <div>
+                                <strong>Email</strong><br>
+                                info@militarytraining.co.za
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 National Military Training Programme. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/application.js"></script>
+</body>
+</html>
