@@ -3,7 +3,10 @@
 // Main JavaScript File
 // ============================================
 
+console.log('JavaScript file loaded successfully!');
+
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded event fired');
     // Initialize all components
     initMobileMenu();
     initTestimonialSlider();
@@ -11,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormValidation();
     initSmoothScrolling();
     initStatsAnimation();
+    initLogoClickCounter();
 });
 
 // ============================================
@@ -20,27 +24,44 @@ function initMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.getElementById('nav-links');
 
+    console.log('Mobile menu init:', { mobileMenuToggle, navLinks });
+
     if (mobileMenuToggle && navLinks) {
-        mobileMenuToggle.addEventListener('click', function() {
+        console.log('Mobile menu elements found, adding event listener');
+
+        // Use a click handler that prevents propagation so document-level click doesn't immediately close the menu.
+        mobileMenuToggle.addEventListener('click', function(event) {
+            console.log('Mobile menu toggle clicked');
+            event.preventDefault();
+            event.stopPropagation(); // prevent the document click handler from running for this event
             navLinks.classList.toggle('active');
             mobileMenuToggle.classList.toggle('active');
+            console.log('Menu classes:', navLinks.className, mobileMenuToggle.className);
         });
 
-        // Close mobile menu when clicking on a link
+        // Close mobile menu when clicking on a link; stop propagation so document handler doesn't interfere.
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
+                console.log('Nav link clicked, closing menu');
+                e.stopPropagation();
                 navLinks.classList.remove('active');
                 mobileMenuToggle.classList.remove('active');
             });
         });
 
-        // Close mobile menu when clicking outside
+        // Close mobile menu when clicking outside, but only when the menu is open.
         document.addEventListener('click', function(event) {
+            // Only attempt to close if menu is currently active/open
+            if (!navLinks.classList.contains('active')) return;
+
             if (!mobileMenuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                console.log('Clicked outside while menu open, closing menu');
                 navLinks.classList.remove('active');
                 mobileMenuToggle.classList.remove('active');
             }
         });
+    } else {
+        console.log('Mobile menu elements not found');
     }
 }
 
@@ -660,6 +681,126 @@ function optimizePerformance() {
 }
 
 optimizePerformance();
+
+// ============================================
+// LOGO CLICK COUNTER FOR ADMIN ACCESS
+// ============================================
+function initLogoClickCounter() {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+
+    let clickCount = 0;
+    let clickTimer = null;
+    const maxClicks = 3;
+    const timeWindow = 2000; // 2 seconds
+
+    logo.addEventListener('click', function(event) {
+        // Only count clicks on the logo itself, not on links within it
+        if (event.target.tagName === 'A' || event.target.closest('a')) {
+            return; // Don't interfere with normal navigation
+        }
+
+        clickCount++;
+
+        // Clear existing timer
+        if (clickTimer) {
+            clearTimeout(clickTimer);
+        }
+
+        // Set new timer
+        clickTimer = setTimeout(() => {
+            clickCount = 0; // Reset counter if time window expires
+        }, timeWindow);
+
+        // Check if we've reached the required number of clicks
+        if (clickCount >= maxClicks) {
+            // Redirect to admin dashboard
+            window.location.href = 'admin/';
+            clickCount = 0; // Reset counter
+            clearTimeout(clickTimer);
+        }
+
+        // Provide visual feedback for debugging (optional)
+        console.log(`Logo clicks: ${clickCount}/${maxClicks}`);
+    });
+
+    // Add a subtle visual indicator when hovering (optional)
+    logo.addEventListener('mouseenter', function() {
+        if (clickCount > 0) {
+            this.style.cursor = 'pointer';
+            this.style.opacity = '0.8';
+        }
+    });
+
+    logo.addEventListener('mouseleave', function() {
+        this.style.opacity = '';
+    });
+}
+
+// ============================================
+// MOBILE MENU TOGGLE FUNCTION (DIRECT STYLE MANIPULATION)
+// ============================================
+function toggleMobileMenu() {
+    console.log('toggleMobileMenu called');
+
+    // Get elements directly
+    const navLinks = document.getElementById('nav-links');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+    console.log('Elements found:', { navLinks, mobileMenuToggle });
+
+    if (!navLinks || !mobileMenuToggle) {
+        console.error('Mobile menu elements not found!');
+        return;
+    }
+
+    // Check if menu is currently open by checking inline styles
+    const isCurrentlyOpen = navLinks.style.visibility === 'visible' ||
+                           navLinks.classList.contains('active');
+
+    console.log('Menu currently open?', isCurrentlyOpen);
+
+    if (isCurrentlyOpen) {
+        // CLOSE MENU - hide it completely
+        navLinks.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+
+        // Force hide with inline styles
+        navLinks.style.position = 'fixed';
+        navLinks.style.top = '70px';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.transform = 'translateY(-120%)';
+        navLinks.style.opacity = '0';
+        navLinks.style.visibility = 'hidden';
+        navLinks.style.zIndex = '-1'; // Hide behind everything
+        navLinks.style.background = 'transparent';
+
+        console.log('Menu FORCE CLOSED');
+    } else {
+        // OPEN MENU - show it prominently
+        navLinks.classList.add('active');
+        mobileMenuToggle.classList.add('active');
+
+        // Force show with inline styles - make it impossible to miss
+        navLinks.style.position = 'fixed';
+        navLinks.style.top = '70px';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.bottom = '0';
+        navLinks.style.transform = 'translateY(0)';
+        navLinks.style.opacity = '1';
+        navLinks.style.visibility = 'visible';
+        navLinks.style.zIndex = '999999';
+        navLinks.style.background = 'white';
+        navLinks.style.border = '5px solid red';
+        navLinks.style.boxShadow = '0 0 0 10px blue';
+        navLinks.style.padding = '30px';
+        navLinks.style.display = 'block';
+
+        console.log('Menu FORCE OPENED with bright borders');
+    }
+}
 
 // ============================================
 // ACCESSIBILITY IMPROVEMENTS

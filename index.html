@@ -8,27 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="logo_v2_teal.png">
+    <link rel="icon" type="image/png" href="assets/logo_v2_teal.png">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="logo_v2_teal.png" alt="Military Training Programme Logo">
+                <img src="assets/logo_v2_teal.png" alt="Military Training Programme Logo">
                 <span>NMTP</span>
             </a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
                 <span class="hamburger"></span>
+                <span class="menu-label">Menu</span>
             </button>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="pages/about.html">About</a></li>
                 <li><a href="pages/pathway.html">Training Pathway</a></li>
                 <li><a href="pages/pre-training.html">Pre-Training</a></li>
                 <li><a href="pages/application.html" class="btn-nav">Apply Now</a></li>
                 <li><a href="pages/dashboard.html" class="btn-nav-outline">Dashboard</a></li>
-                <li><a href="admin/" class="btn-nav-outline">Admin Portal</a></li>
             </ul>
         </div>
     </nav>
@@ -240,7 +240,7 @@
                         </div>
                         <div class="author-info">
                             <h4>Thabo Sithole</h4>
-                            <p>Class of 2024 • Now in Military Academy</p>
+                            <p>Class of 2025 • Now in Military Academy</p>
                         </div>
                     </div>
                     <div class="transformation-stats">
@@ -269,7 +269,7 @@
                         </div>
                         <div class="author-info">
                             <h4>Nomsa Mthembu</h4>
-                            <p>Class of 2024 • Leadership Development Graduate</p>
+                            <p>Class of 2025 • Leadership Development Graduate</p>
                         </div>
                     </div>
                     <div class="transformation-stats">
@@ -298,7 +298,7 @@
                         </div>
                         <div class="author-info">
                             <h4>James Dlamini</h4>
-                            <p>Class of 2024 • Special Forces Candidate</p>
+                            <p>Class of 2025 • Special Forces Candidate</p>
                         </div>
                     </div>
                     <div class="transformation-stats">
@@ -390,7 +390,7 @@
                 </div>
                 <div class="cta-deadline">
                     <span class="deadline-icon">⏰</span>
-                    <span>Application Deadline: 31 December 2024</span>
+                    <span>Application Deadline: 31 December 2025</span>
                 </div>
             </div>
         </div>
@@ -410,7 +410,7 @@
             <div class="footer-grid">
                 <div class="footer-column">
                     <div class="footer-logo">
-                        <img src="images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                        <img src="assets/logo_v2_teal.png" alt="Military Training Logo" onerror="this.style.display='none'">
                         <span>MILITARY TRAINING<br>PROGRAMME</span>
                     </div>
                     <div class="footer-about">
@@ -491,7 +491,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 National Military Training Programme. All rights reserved.</p>
+                <p>&copy; 2025 National Military Training Programme. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>

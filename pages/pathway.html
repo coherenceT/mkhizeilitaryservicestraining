@@ -11,23 +11,24 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="main-nav" id="main-nav">
+    <nav class="main-nav">
         <div class="nav-container">
-            <div class="logo">
-                <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
-                <span>MILITARY TRAINING</span>
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="pathway.html" class="active">Pathway</a>
-                <a href="pre-training.html">Pre-Training</a>
-                <a href="application.html">Apply</a>
-                <a href="../admin/" class="btn-nav-outline">Admin Portal</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo_v2_teal.png" alt="Military Training Programme Logo">
+                <span>NMTP</span>
+            </a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
                 <span class="hamburger"></span>
+                <span class="menu-label">Menu</span>
             </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pathway.html" class="active">Training Pathway</a></li>
+                <li><a href="pre-training.html">Pre-Training</a></li>
+                <li><a href="application.html" class="btn-nav">Apply Now</a></li>
+                <li><a href="dashboard.html" class="btn-nav-outline">Dashboard</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -719,7 +720,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 National Military Training Programme. All rights reserved.</p>
+                <p>&copy; 2025 National Military Training Programme. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>

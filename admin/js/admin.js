@@ -4,27 +4,18 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize admin dashboard components
     initAdminDashboard();
+    handleAdminResponsiveLayout();
+    initAdminAccessibility();
+    initRealTimeUpdates();
 });
 
 function initAdminDashboard() {
-    // Sidebar navigation
     initAdminSidebarNavigation();
-
-    // Initialize charts and analytics
     initCharts();
-
-    // Table functionality
     initDataTables();
-
-    // Action buttons
     initActionButtons();
-
-    // Filters and search
     initFilters();
-
-    // Modal functionality
     initModals();
 }
 
@@ -33,6 +24,7 @@ function initAdminDashboard() {
 // ============================================
 function initAdminSidebarNavigation() {
     const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    const sidebar = document.querySelector('.dashboard-sidebar');
     const mainContent = document.querySelector('.dashboard-main');
 
     sidebarLinks.forEach(link => {
@@ -43,7 +35,12 @@ function initAdminSidebarNavigation() {
             sidebarLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
 
-            // Update main content based on link
+            // Close mobile sidebar after selection
+            if (window.innerWidth < 1024 && sidebar) {
+                sidebar.classList.remove('active');
+            }
+
+            // Update main content
             const sectionId = this.getAttribute('href').substring(1);
             updateAdminMainContent(sectionId);
         });
@@ -51,14 +48,11 @@ function initAdminSidebarNavigation() {
 }
 
 function updateAdminMainContent(sectionId) {
-    // This would typically load different content based on the section
-    // For now, we'll just scroll to the relevant section if it exists
     const targetSection = document.querySelector(`#${sectionId}`);
     if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Update page title based on section
     const titles = {
         'overview': 'Admin Dashboard Overview',
         'applications': 'Application Management',
@@ -78,11 +72,9 @@ function updateAdminMainContent(sectionId) {
 // CHARTS AND ANALYTICS
 // ============================================
 function initCharts() {
-    // Initialize Chart.js if available
     if (typeof Chart !== 'undefined') {
         initApplicationChart();
     } else {
-        // Fallback for when Chart.js is not loaded
         createMockCharts();
     }
 }
@@ -91,7 +83,7 @@ function initApplicationChart() {
     const ctx = document.getElementById('applicationChart');
     if (!ctx) return;
 
-    const applicationChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -119,9 +111,7 @@ function initApplicationChart() {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    position: 'top',
-                },
+                legend: { position: 'top' },
                 title: {
                     display: true,
                     text: 'Monthly Application Trends'
@@ -147,7 +137,6 @@ function initApplicationChart() {
 }
 
 function createMockCharts() {
-    // Create simple CSS-based charts when Chart.js is not available
     const chartContainer = document.querySelector('.chart-container');
     if (!chartContainer) return;
 
@@ -168,16 +157,9 @@ function initDataTables() {
     const dataTables = document.querySelectorAll('.data-table');
 
     dataTables.forEach(table => {
-        // Add sorting functionality
         initTableSorting(table);
-
-        // Add search functionality
         initTableSearch(table);
-
-        // Add pagination
         initTablePagination(table);
-
-        // Add row selection
         initRowSelection(table);
     });
 }
@@ -188,14 +170,9 @@ function initTableSorting(table) {
     headers.forEach((header, index) => {
         header.addEventListener('click', function() {
             const isAscending = this.classList.contains('sort-asc');
-            const isDescending = this.classList.contains('sort-desc');
 
-            // Reset all headers
-            headers.forEach(h => {
-                h.classList.remove('sort-asc', 'sort-desc');
-            });
+            headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
 
-            // Set new sort direction
             if (isAscending) {
                 this.classList.add('sort-desc');
                 sortTable(table, index, 'desc');
@@ -205,7 +182,6 @@ function initTableSorting(table) {
             }
         });
 
-        // Make sortable headers visually distinct
         header.style.cursor = 'pointer';
         header.style.userSelect = 'none';
     });
@@ -219,11 +195,10 @@ function sortTable(table, columnIndex, direction) {
         const aValue = a.cells[columnIndex].textContent.trim();
         const bValue = b.cells[columnIndex].textContent.trim();
 
-        let comparison = 0;
-
-        // Try to parse as numbers first
         const aNum = parseFloat(aValue.replace(/[^\d.-]/g, ''));
         const bNum = parseFloat(bValue.replace(/[^\d.-]/g, ''));
+
+        let comparison = 0;
 
         if (!isNaN(aNum) && !isNaN(bNum)) {
             comparison = aNum - bNum;
@@ -234,15 +209,13 @@ function sortTable(table, columnIndex, direction) {
         return direction === 'asc' ? comparison : -comparison;
     });
 
-    // Re-append sorted rows
     rows.forEach(row => tbody.appendChild(row));
 }
 
 function initTableSearch(table) {
     const tableWrapper = table.closest('.table-container');
-    if (!tableWrapper) return;
+    if (!tableWrapper || document.querySelector('.table-search')) return;
 
-    // Create search input
     const searchContainer = document.createElement('div');
     searchContainer.className = 'table-search';
     searchContainer.innerHTML = `
@@ -269,7 +242,7 @@ function initTableSearch(table) {
         rows.forEach(row => {
             const text = row.textContent.toLowerCase();
             const statusBadge = row.querySelector('.status-badge');
-            const statusClass = statusBadge ? statusBadge.className.split(' ').find(cls => cls.startsWith('status-')) : '';
+            const statusClass = statusBadge ? statusBadge.className : '';
 
             const matchesSearch = text.includes(searchTerm);
             const matchesFilter = !filterValue || statusClass.includes(filterValue);
@@ -284,14 +257,13 @@ function initTableSearch(table) {
 
 function initTablePagination(table) {
     const rows = table.querySelectorAll('tbody tr');
-    if (rows.length <= 10) return; // No pagination needed for small tables
+    if (rows.length <= 10) return;
 
     const tableWrapper = table.closest('.table-container');
     const rowsPerPage = 10;
     let currentPage = 1;
     const totalPages = Math.ceil(rows.length / rowsPerPage);
 
-    // Create pagination controls
     const pagination = document.createElement('div');
     pagination.className = 'table-pagination';
 
@@ -309,8 +281,7 @@ function initTablePagination(table) {
             <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">Next</button>
         `;
 
-        // Add event listeners to pagination buttons
-        pagination.querySelectorAll('.page-btn').forEach(btn => {
+        pagination.querySelectorAll('.page-btn:not([disabled])').forEach(btn => {
             btn.addEventListener('click', function() {
                 const newPage = parseInt(this.dataset.page);
                 if (newPage >= 1 && newPage <= totalPages) {
@@ -330,10 +301,7 @@ function initRowSelection(table) {
 
     rows.forEach(row => {
         row.addEventListener('click', function() {
-            // Remove selection from other rows
             rows.forEach(r => r.classList.remove('selected'));
-
-            // Select this row
             this.classList.add('selected');
         });
     });
@@ -343,104 +311,81 @@ function initRowSelection(table) {
 // ACTION BUTTONS
 // ============================================
 function initActionButtons() {
-    // Review buttons
-    document.querySelectorAll('button:contains("Review")').forEach(button => {
-        button.addEventListener('click', function() {
-            const row = this.closest('tr');
+    document.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (!button) return;
+
+        const buttonText = button.textContent.trim().toLowerCase();
+        const row = button.closest('tr');
+
+        if (buttonText.includes('review') && row) {
             const appId = row.cells[0].textContent;
             openApplicationReview(appId);
-        });
-    });
-
-    // Message buttons
-    document.querySelectorAll('button:contains("Message")').forEach(button => {
-        button.addEventListener('click', function() {
-            const row = this.closest('tr');
+        } else if (buttonText.includes('message') && row) {
             const applicantName = row.cells[1].textContent;
             openMessageModal(applicantName);
-        });
-    });
-
-    // Quick action buttons
-    document.querySelectorAll('.action-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const action = this.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        } else if (button.classList.contains('action-btn')) {
+            const action = buttonText.replace(/\s+/g, '-');
             handleQuickAction(action);
-        });
+        }
     });
 }
 
 function openApplicationReview(appId) {
-    // In a real application, this would open a detailed review modal
-    alert(`Opening detailed review for application: ${appId}`);
     console.log(`Review application: ${appId}`);
+    openModal('Application Review', `<p>Reviewing application: ${appId}</p>`);
 }
 
 function openMessageModal(applicantName) {
-    // In a real application, this would open a message composition modal
-    alert(`Opening message composer for: ${applicantName}`);
     console.log(`Message applicant: ${applicantName}`);
+    openModal('Send Message', `<textarea placeholder="Message for ${applicantName}..." style="width:100%; height:150px;"></textarea>`);
 }
 
 function handleQuickAction(action) {
-    switch (action) {
-        case 'export-data':
-            exportApplicationData();
-            break;
-        case 'send-bulk-message':
-            openBulkMessageModal();
-            break;
-        case 'generate-report':
-            generateReport();
-            break;
-        case 'settings':
-            openSettingsModal();
-            break;
-        default:
-            console.log(`Unknown action: ${action}`);
+    const actions = {
+        'export-data': exportApplicationData,
+        'send-bulk-message': openBulkMessageModal,
+        'generate-report': generateReport,
+        'settings': openSettingsModal
+    };
+
+    if (actions[action]) {
+        actions[action]();
+    } else {
+        console.log(`Unknown action: ${action}`);
     }
 }
 
 function exportApplicationData() {
-    // In a real application, this would trigger a data export
-    alert('Data export initiated. You will receive an email when the export is ready.');
     console.log('Exporting application data...');
+    openModal('Export Data', '<p>Data export initiated. You will receive an email when ready.</p>');
 }
 
 function openBulkMessageModal() {
-    // In a real application, this would open a bulk messaging interface
-    alert('Bulk messaging interface would open here.');
     console.log('Opening bulk message modal...');
+    openModal('Bulk Message', '<textarea placeholder="Enter message..." style="width:100%; height:150px;"></textarea>');
 }
 
 function generateReport() {
-    // In a real application, this would generate and download a report
-    alert('Report generation initiated. The report will be available for download shortly.');
     console.log('Generating report...');
+    openModal('Generate Report', '<p>Report generation initiated. Download will start shortly.</p>');
 }
 
 function openSettingsModal() {
-    // In a real application, this would open system settings
-    alert('System settings modal would open here.');
     console.log('Opening settings...');
+    openModal('System Settings', '<p>System settings panel would appear here.</p>');
 }
 
 // ============================================
 // FILTERS AND SEARCH
 // ============================================
 function initFilters() {
-    // Date range filters
     initDateFilters();
-
-    // Status filters
     initStatusFilters();
-
-    // Advanced filters
     initAdvancedFilters();
 }
 
 function initDateFilters() {
-    // Add date range inputs to the page (if they don't exist)
     const filterSection = document.querySelector('.card-header');
     if (filterSection && !document.querySelector('.date-filters')) {
         const dateFilters = document.createElement('div');
@@ -450,7 +395,6 @@ function initDateFilters() {
             <label>To: <input type="date" id="dateTo"></label>
             <button class="btn btn-small" id="applyDateFilter">Apply</button>
         `;
-
         filterSection.appendChild(dateFilters);
 
         document.getElementById('applyDateFilter').addEventListener('click', function() {
@@ -462,9 +406,7 @@ function initDateFilters() {
 }
 
 function initStatusFilters() {
-    // Status filter buttons
     const statusButtons = ['All', 'Approved', 'Pending', 'Rejected', 'Under Review'];
-
     const filterContainer = document.createElement('div');
     filterContainer.className = 'status-filters';
 
@@ -473,21 +415,13 @@ function initStatusFilters() {
         button.className = 'status-filter-btn';
         button.textContent = status;
         button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            document.querySelectorAll('.status-filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Add active class to clicked button
+            document.querySelectorAll('.status-filter-btn').forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-
             filterApplicationsByStatus(status.toLowerCase());
         });
-
         filterContainer.appendChild(button);
     });
 
-    // Add to page
     const cardContent = document.querySelector('.card-content');
     if (cardContent && !document.querySelector('.status-filters')) {
         cardContent.insertBefore(filterContainer, cardContent.firstChild);
@@ -495,29 +429,25 @@ function initStatusFilters() {
 }
 
 function initAdvancedFilters() {
-    // Province filter
-    const provinceFilter = document.createElement('select');
-    provinceFilter.className = 'province-filter';
-    provinceFilter.innerHTML = `
-        <option value="">All Provinces</option>
-        <option value="gauteng">Gauteng</option>
-        <option value="western-cape">Western Cape</option>
-        <option value="kwazulu-natal">KwaZulu-Natal</option>
-        <option value="eastern-cape">Eastern Cape</option>
-        <option value="limpopo">Limpopo</option>
-        <option value="mpumalanga">Mpumalanga</option>
-        <option value="north-west">North West</option>
-        <option value="northern-cape">Northern Cape</option>
-        <option value="free-state">Free State</option>
-    `;
-
-    provinceFilter.addEventListener('change', function() {
-        filterApplicationsByProvince(this.value);
-    });
-
-    // Add to page
     const filterSection = document.querySelector('.card-header');
     if (filterSection && !document.querySelector('.province-filter')) {
+        const provinceFilter = document.createElement('select');
+        provinceFilter.className = 'province-filter';
+        provinceFilter.innerHTML = `
+            <option value="">All Provinces</option>
+            <option value="gauteng">Gauteng</option>
+            <option value="western-cape">Western Cape</option>
+            <option value="kwazulu-natal">KwaZulu-Natal</option>
+            <option value="eastern-cape">Eastern Cape</option>
+            <option value="limpopo">Limpopo</option>
+            <option value="mpumalanga">Mpumalanga</option>
+            <option value="north-west">North West</option>
+            <option value="northern-cape">Northern Cape</option>
+            <option value="free-state">Free State</option>
+        `;
+        provinceFilter.addEventListener('change', function() {
+            filterApplicationsByProvince(this.value);
+        });
         filterSection.appendChild(provinceFilter);
     }
 }
@@ -526,14 +456,13 @@ function filterApplicationsByDate(fromDate, toDate) {
     const rows = document.querySelectorAll('.data-table tbody tr');
 
     rows.forEach(row => {
-        const dateCell = row.cells[3]; // Assuming date is in the 4th column
+        const dateCell = row.cells[3];
         if (dateCell) {
             const rowDate = new Date(dateCell.textContent);
             const from = fromDate ? new Date(fromDate) : null;
             const to = toDate ? new Date(toDate) : null;
 
             let showRow = true;
-
             if (from && rowDate < from) showRow = false;
             if (to && rowDate > to) showRow = false;
 
@@ -549,18 +478,14 @@ function filterApplicationsByStatus(status) {
         const statusBadge = row.querySelector('.status-badge');
         if (statusBadge) {
             const badgeClass = statusBadge.className;
-            const showRow = status === 'all' ||
-                           badgeClass.includes(status) ||
+            const showRow = status === 'all' || badgeClass.includes(status) || 
                            (status === 'under review' && badgeClass.includes('review'));
-
             row.style.display = showRow ? '' : 'none';
         }
     });
 }
 
 function filterApplicationsByProvince(province) {
-    // In a real application, this would filter based on stored province data
-    alert(`Filtering by province: ${province}`);
     console.log(`Filter applications by province: ${province}`);
 }
 
@@ -568,7 +493,6 @@ function filterApplicationsByProvince(province) {
 // MODALS
 // ============================================
 function initModals() {
-    // Create modal container if it doesn't exist
     if (!document.querySelector('.modal-overlay')) {
         const modalContainer = document.createElement('div');
         modalContainer.className = 'modal-overlay';
@@ -577,11 +501,9 @@ function initModals() {
             <div class="modal">
                 <div class="modal-header">
                     <h3 id="modalTitle">Modal Title</h3>
-                    <button class="modal-close">&times;</button>
+                    <button class="modal-close" aria-label="Close modal">&times;</button>
                 </div>
-                <div class="modal-body" id="modalBody">
-                    Modal content goes here
-                </div>
+                <div class="modal-body" id="modalBody">Modal content</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" id="modalCancel">Cancel</button>
                     <button class="btn btn-primary" id="modalConfirm">Confirm</button>
@@ -591,76 +513,47 @@ function initModals() {
 
         document.body.appendChild(modalContainer);
 
-        // Modal event listeners
         const modal = document.getElementById('adminModal');
-        const closeBtn = modal.querySelector('.modal-close');
-        const cancelBtn = document.getElementById('modalCancel');
+        const closeModal = () => modal.classList.remove('active');
 
-        [closeBtn, cancelBtn].forEach(btn => {
-            btn.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-        });
-
-        // Close modal when clicking outside
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        document.getElementById('modalCancel').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
         });
     }
 }
 
 function openModal(title, content, confirmCallback = null) {
     const modal = document.getElementById('adminModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const confirmBtn = document.getElementById('modalConfirm');
-
-    modalTitle.textContent = title;
-    modalBody.innerHTML = content;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').innerHTML = content;
     modal.classList.add('active');
 
-    // Remove previous event listeners
-    const newConfirmBtn = confirmBtn.cloneNode(true);
-    confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+    const confirmBtn = document.getElementById('modalConfirm');
+    const newBtn = confirmBtn.cloneNode(true);
+    confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
 
-    if (confirmCallback) {
-        newConfirmBtn.addEventListener('click', function() {
-            confirmCallback();
-            modal.classList.remove('active');
-        });
-    } else {
-        newConfirmBtn.addEventListener('click', function() {
-            modal.classList.remove('active');
-        });
-    }
+    newBtn.addEventListener('click', function() {
+        if (confirmCallback) confirmCallback();
+        modal.classList.remove('active');
+    });
 }
 
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
-
-// Bulk operations
 function selectAllRows(table) {
-    const checkboxes = table.querySelectorAll('tbody input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = true;
-    });
+    table.querySelectorAll('tbody input[type="checkbox"]').forEach(cb => cb.checked = true);
 }
 
 function deselectAllRows(table) {
-    const checkboxes = table.querySelectorAll('tbody input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
+    table.querySelectorAll('tbody input[type="checkbox"]').forEach(cb => cb.checked = false);
 }
 
 function getSelectedRows(table) {
     const selectedRows = [];
-    const checkboxes = table.querySelectorAll('tbody input[type="checkbox"]:checked');
-
-    checkboxes.forEach(checkbox => {
+    table.querySelectorAll('tbody input[type="checkbox"]:checked').forEach(checkbox => {
         const row = checkbox.closest('tr');
         selectedRows.push({
             id: row.cells[0].textContent,
@@ -669,28 +562,21 @@ function getSelectedRows(table) {
             date: row.cells[3].textContent
         });
     });
-
     return selectedRows;
 }
 
-// Export functions
 function exportToCSV(data, filename) {
-    const csvContent = "data:text/csv;charset=utf-8,"
-        + data.map(row => Object.values(row).join(",")).join("\n");
-
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = "data:text/csv;charset=utf-8," + 
+        data.map(row => Object.values(row).join(",")).join("\n");
+    
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
+    link.setAttribute("href", encodeURI(csvContent));
     link.setAttribute("download", filename);
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
 }
 
 function exportToPDF(data, filename) {
-    // In a real application, this would use a PDF generation library
-    alert('PDF export functionality would be implemented here.');
-    console.log('Exporting to PDF:', data, filename);
+    console.log('PDF export would use a library like jsPDF');
 }
 
 // ============================================
@@ -699,54 +585,42 @@ function exportToPDF(data, filename) {
 function handleAdminResponsiveLayout() {
     const sidebar = document.querySelector('.dashboard-sidebar');
     const main = document.querySelector('.dashboard-main');
+    const header = document.querySelector('.dashboard-header');
+
+    if (!sidebar || !main) return;
 
     function updateLayout() {
-        if (window.innerWidth < 1024) {
-            // Mobile/tablet layout
-            sidebar.style.transform = 'translateX(-100%)';
-            main.style.marginLeft = '0';
+        const isMobile = window.innerWidth < 1024;
 
-            // Add toggle button for mobile
+        if (isMobile) {
+            sidebar.classList.remove('active');
             if (!document.querySelector('.sidebar-toggle')) {
                 const toggleBtn = document.createElement('button');
                 toggleBtn.className = 'sidebar-toggle btn btn-small';
+                toggleBtn.setAttribute('aria-label', 'Toggle menu');
                 toggleBtn.innerHTML = '☰ Menu';
-                toggleBtn.addEventListener('click', toggleAdminSidebar);
-                document.querySelector('.dashboard-header').prepend(toggleBtn);
+                toggleBtn.addEventListener('click', toggleSidebar);
+                header.prepend(toggleBtn);
             }
         } else {
-            // Desktop layout
-            sidebar.style.transform = 'translateX(0)';
-            main.style.marginLeft = '260px';
-
-            // Remove mobile toggle
+            sidebar.classList.add('active');
             const toggleBtn = document.querySelector('.sidebar-toggle');
-            if (toggleBtn) {
-                toggleBtn.remove();
-            }
+            if (toggleBtn) toggleBtn.remove();
         }
     }
 
-    function toggleAdminSidebar() {
-        const isOpen = sidebar.style.transform === 'translateX(0px)' || sidebar.style.transform === '';
-        sidebar.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0)';
+    function toggleSidebar() {
+        sidebar.classList.toggle('active');
     }
 
-    // Initial layout
     updateLayout();
-
-    // Update on resize
     window.addEventListener('resize', updateLayout);
 }
-
-// Initialize responsive behavior
-handleAdminResponsiveLayout();
 
 // ============================================
 // ACCESSIBILITY IMPROVEMENTS
 // ============================================
 function initAdminAccessibility() {
-    // Add keyboard navigation
     const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
     sidebarLinks.forEach(link => {
         link.addEventListener('keydown', function(e) {
@@ -757,53 +631,35 @@ function initAdminAccessibility() {
         });
     });
 
-    // Improve focus management
-    const focusableElements = document.querySelectorAll('button, a, input, select, textarea');
-    focusableElements.forEach(element => {
+    document.querySelectorAll('button, a, input, select, textarea').forEach(element => {
         element.addEventListener('focus', function() {
             this.style.outline = '2px solid var(--teal)';
         });
-
         element.addEventListener('blur', function() {
             this.style.outline = '';
         });
     });
 
-    // Add ARIA labels where needed
     document.querySelectorAll('.data-table').forEach(table => {
         table.setAttribute('role', 'table');
         table.setAttribute('aria-label', 'Applications data table');
     });
 }
 
-initAdminAccessibility();
-
 // ============================================
-// REAL-TIME UPDATES (Simulated)
+// REAL-TIME UPDATES
 // ============================================
 function initRealTimeUpdates() {
-    // Simulate real-time updates every 30 seconds
-    setInterval(() => {
-        updateLiveStats();
-    }, 30000);
+    setInterval(updateLiveStats, 30000);
 }
 
 function updateLiveStats() {
-    // In a real application, this would fetch live data from the server
-    const statElements = document.querySelectorAll('.dashboard-stat .value');
-
-    statElements.forEach((element, index) => {
-        // Simulate small random changes
+    document.querySelectorAll('.dashboard-stat .value').forEach(element => {
         const currentValue = parseInt(element.textContent.replace(/[^\d]/g, ''));
         if (!isNaN(currentValue)) {
-            const change = Math.floor(Math.random() * 6) - 3; // Random change between -3 and +3
-            const newValue = Math.max(0, currentValue + change);
-            element.textContent = newValue;
+            const change = Math.floor(Math.random() * 6) - 3;
+            element.textContent = Math.max(0, currentValue + change);
         }
     });
-
     console.log('Live stats updated');
 }
-
-// Initialize real-time updates
-initRealTimeUpdates();

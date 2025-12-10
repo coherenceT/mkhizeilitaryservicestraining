@@ -11,24 +11,24 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="main-nav" id="main-nav">
+    <nav class="main-nav">
         <div class="nav-container">
-            <div class="logo">
-                <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
-                <span>MILITARY TRAINING</span>
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="pathway.html">Pathway</a>
-                <a href="pre-training.html">Pre-Training</a>
-                <a href="application.html">Apply</a>
-                <a href="dashboard.html" class="active">Dashboard</a>
-                <a href="../admin/" class="btn-nav-outline">Admin Portal</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo_v2_teal.png" alt="Military Training Programme Logo">
+                <span>NMTP</span>
+            </a>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
                 <span class="hamburger"></span>
+                <span class="menu-label">Menu</span>
             </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pathway.html">Training Pathway</a></li>
+                <li><a href="pre-training.html">Pre-Training</a></li>
+                <li><a href="application.html" class="btn-nav">Apply Now</a></li>
+                <li><a href="dashboard.html" class="btn-nav-outline active">Dashboard</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -37,7 +37,7 @@
         <!-- Sidebar -->
         <aside class="dashboard-sidebar">
             <div class="sidebar-logo">
-                <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                <img src="../assets/logo_v2_teal.png" alt="Military Training Logo" onerror="this.style.display='none'">
                 <span>NMTP</span>
             </div>
 
@@ -161,7 +161,7 @@
                     </div>
                     <div class="dashboard-stat-content">
                         <h4>Application ID</h4>
-                        <div class="value">NMTP-20241201</div>
+                        <div class="value">NMTP-20251201</div>
                     </div>
                 </div>
             </section>
@@ -174,7 +174,7 @@
                 <div class="card-content">
                     <div class="timeline">
                         <div class="timeline-item completed">
-                            <div class="timeline-date">Dec 1, 2024</div>
+                            <div class="timeline-date">Dec 1, 2025</div>
                             <div class="timeline-content">
                                 <h4>Application Submitted</h4>
                                 <p>Your application has been successfully submitted and received by our admissions team.</p>
@@ -182,7 +182,7 @@
                         </div>
 
                         <div class="timeline-item completed">
-                            <div class="timeline-date">Dec 3, 2024</div>
+                            <div class="timeline-date">Dec 3, 2025</div>
                             <div class="timeline-content">
                                 <h4>Document Verification</h4>
                                 <p>All submitted documents have been verified and approved. Your application is now under review.</p>
@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="timeline-item current">
-                            <div class="timeline-date">Dec 10, 2024</div>
+                            <div class="timeline-date">Dec 10, 2025</div>
                             <div class="timeline-content">
                                 <h4>Application Review</h4>
                                 <p>Your application is currently being reviewed by our admissions committee. This process typically takes 2-4 weeks.</p>
@@ -385,7 +385,7 @@
                                     <div class="sender-avatar">AO</div>
                                     <div class="sender-info">
                                         <span class="sender-name">Admissions Officer</span>
-                                        <span class="message-date">Dec 5, 2024</span>
+                                        <span class="message-date">Dec 5, 2025</span>
                                     </div>
                                 </div>
                                 <span class="message-status unread">Unread</span>
@@ -401,7 +401,7 @@
                                     <div class="sender-avatar">MO</div>
                                     <div class="sender-info">
                                         <span class="sender-name">Medical Officer</span>
-                                        <span class="message-date">Dec 3, 2024</span>
+                                        <span class="message-date">Dec 3, 2025</span>
                                     </div>
                                 </div>
                                 <span class="message-status read">Read</span>
@@ -417,13 +417,13 @@
                                     <div class="sender-avatar">AO</div>
                                     <div class="sender-info">
                                         <span class="sender-name">Admissions Officer</span>
-                                        <span class="message-date">Dec 1, 2024</span>
+                                        <span class="message-date">Dec 1, 2025</span>
                                     </div>
                                 </div>
                                 <span class="message-status read">Read</span>
                             </div>
                             <div class="message-content">
-                                <p>Welcome to the National Military Training Programme! Your application (NMTP-20241201) has been successfully submitted. You can now track your progress through this dashboard.</p>
+                                <p>Welcome to the National Military Training Programme! Your application (NMTP-20251201) has been successfully submitted. You can now track your progress through this dashboard.</p>
                             </div>
                         </div>
                     </div>
@@ -446,7 +446,7 @@
                                 <h4>Fitness Assessment Information Session</h4>
                                 <p>Online webinar providing details about the upcoming fitness assessment phase.</p>
                                 <div class="event-meta">
-                                    <span>📅 December 15, 2024</span>
+                                    <span>📅 December 15, 2025</span>
                                     <span>🕒 14:00 - 16:00</span>
                                     <span>📍 Online (Zoom)</span>
                                 </div>
@@ -465,7 +465,7 @@
                                 <h4>Applicant Q&A Session</h4>
                                 <p>Interactive session where you can ask questions about the programme and application process.</p>
                                 <div class="event-meta">
-                                    <span>📅 December 20, 2024</span>
+                                    <span>📅 December 20, 2025</span>
                                     <span>🕒 10:00 - 12:00</span>
                                     <span>📍 Pretoria Military Base</span>
                                 </div>
@@ -484,7 +484,7 @@
                                 <h4>Programme Orientation</h4>
                                 <p>Welcome session for successful applicants covering programme expectations and preparation.</p>
                                 <div class="event-meta">
-                                    <span>📅 January 1, 2025</span>
+                                    <span>📅 January 1, 2026</span>
                                     <span>🕒 09:00 - 17:00</span>
                                     <span>📍 Training Camp</span>
                                 </div>
@@ -505,7 +505,7 @@
             <div class="footer-grid">
                 <div class="footer-column">
                     <div class="footer-logo">
-                        <img src="../images/logo.png" alt="Military Training Logo" onerror="this.style.display='none'">
+                        <img src="../assets/logo_v2_teal.png" alt="Military Training Logo" onerror="this.style.display='none'">
                         <span>MILITARY TRAINING<br>PROGRAMME</span>
                     </div>
                     <div class="footer-about">
@@ -586,7 +586,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 National Military Training Programme. All rights reserved.</p>
+                <p>&copy; 2025 National Military Training Programme. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
