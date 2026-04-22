@@ -151,7 +151,7 @@ function initTestimonialSlider() {
 // SCROLL EFFECTS
 // ============================================
 function initScrollEffects() {
-    const nav = document.getElementById('main-nav');
+    const nav = document.querySelector('.main-nav');
     let lastScrollTop = 0;
 
     window.addEventListener('scroll', function() {
@@ -735,71 +735,6 @@ function initLogoClickCounter() {
     logo.addEventListener('mouseleave', function() {
         this.style.opacity = '';
     });
-}
-
-// ============================================
-// MOBILE MENU TOGGLE FUNCTION (DIRECT STYLE MANIPULATION)
-// ============================================
-function toggleMobileMenu() {
-    console.log('toggleMobileMenu called');
-
-    // Get elements directly
-    const navLinks = document.getElementById('nav-links');
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-
-    console.log('Elements found:', { navLinks, mobileMenuToggle });
-
-    if (!navLinks || !mobileMenuToggle) {
-        console.error('Mobile menu elements not found!');
-        return;
-    }
-
-    // Check if menu is currently open by checking inline styles
-    const isCurrentlyOpen = navLinks.style.visibility === 'visible' ||
-                           navLinks.classList.contains('active');
-
-    console.log('Menu currently open?', isCurrentlyOpen);
-
-    if (isCurrentlyOpen) {
-        // CLOSE MENU - hide it completely
-        navLinks.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-
-        // Force hide with inline styles
-        navLinks.style.position = 'fixed';
-        navLinks.style.top = '70px';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.transform = 'translateY(-120%)';
-        navLinks.style.opacity = '0';
-        navLinks.style.visibility = 'hidden';
-        navLinks.style.zIndex = '-1'; // Hide behind everything
-        navLinks.style.background = 'transparent';
-
-        console.log('Menu FORCE CLOSED');
-    } else {
-        // OPEN MENU - show it prominently
-        navLinks.classList.add('active');
-        mobileMenuToggle.classList.add('active');
-
-        // Force show with inline styles - make it impossible to miss
-        navLinks.style.position = 'fixed';
-        navLinks.style.top = '70px';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.bottom = '0';
-        navLinks.style.transform = 'translateY(0)';
-        navLinks.style.opacity = '1';
-        navLinks.style.visibility = 'visible';
-        navLinks.style.zIndex = '999999';
-        navLinks.style.background = 'white';
-        navLinks.style.border = '5px solid red';
-        navLinks.style.boxShadow = '0 0 0 10px blue';
-        navLinks.style.padding = '30px';
-        navLinks.style.display = 'block';
-
-        console.log('Menu FORCE OPENED with bright borders');
-    }
 }
 
 // ============================================
